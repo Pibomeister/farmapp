@@ -1,0 +1,31 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right"  (click)="isExpanded = !isExpanded">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">FarmApp</a>
+
+  <div class="collapse navbar-collapse"[ngClass]="{show: isExpanded}">
+    <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Buscar">
+      <button class="btn search-btn" type="submit">Buscar</button>
+    </form>
+    <ul ngbDropdown class="navbar-nav user-nav">
+      <li  ngbDropdownToggle class="nav-item user-item">
+        <a  class="user-icon"><i class="fa fa-user-o"></i></a>
+      </li>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item">Action - 1</button>
+        <button class="dropdown-item">Another Action</button>
+        <button class="dropdown-item">Something else is here</button>
+      </div>
+    </ul>
+  </div>
+</nav>
