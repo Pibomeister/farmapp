@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { FofComponent } from './fof/fof.component';
+import { CardComponent } from './dashboard/card/card.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FofComponent } from './fof/fof.component';
     DashboardComponent,
     LoginComponent,
     SignupComponent,
-    FofComponent
+    FofComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
