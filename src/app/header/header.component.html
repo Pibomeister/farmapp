@@ -7,11 +7,11 @@
 
   <div class="collapse navbar-collapse"[ngClass]="{show: isExpanded}">
     <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Inicio</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['dashboard']">Inicio</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['fof']">Link</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
