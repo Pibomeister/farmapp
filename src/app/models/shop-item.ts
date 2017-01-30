@@ -4,16 +4,18 @@ export class ShopItem {
     fancyName: string;
     rating: Array<number>;
     price: number;
-    discount?: number;    
+    discount?: number;  
     
-    getPreviousPrice(){
+    public getPreviousPrice(){
+        return 2;
+        /*console.log('called');
         if(!this.discount){
             return;
         }
-        return (this.price / this.discount) * 100;
+        return (this.price / this.discount) * 100;*/
     }
 
-    getAverageRating(){
+    public getAverageRating(){
         let sum = 0;
         if(this.rating.length > 0){
             for(let i = 0; i < this.rating.length; i++){
