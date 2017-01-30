@@ -13,6 +13,8 @@ import { SignupComponent } from './signup/signup.component';
 import { FofComponent } from './fof/fof.component';
 import { CardComponent } from './dashboard/card/card.component';
 
+import { HttpService } from './services/http.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,7 @@ import { CardComponent } from './dashboard/card/card.component';
     appRouting,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

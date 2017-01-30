@@ -12,4 +12,19 @@ export class ShopItem {
         }
         return (this.price / this.discount) * 100;
     }
+
+    getAverageRating(){
+        let sum = 0;
+        if(this.rating.length > 0){
+            for(let i = 0; i < this.rating.length; i++){
+                sum+= this.rating[0];
+            }
+            return sum / this.rating.length;
+        }
+
+        else{
+            return undefined;
+        }
+        
+    }
 }

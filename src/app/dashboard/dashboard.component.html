@@ -1,11 +1,5 @@
   <div class="card-deck">
 
-      <fa-card></fa-card>
-      <fa-card></fa-card>
-      <fa-card></fa-card>
-      <fa-card></fa-card>
-      <fa-card></fa-card>
-      <fa-card></fa-card>
-      <fa-card></fa-card>
-      <fa-card></fa-card>
-    </div>    
+    <fa-card *ngFor="let drug of drugs" [shopItem]="drug"></fa-card>
+       
+  </div>    
