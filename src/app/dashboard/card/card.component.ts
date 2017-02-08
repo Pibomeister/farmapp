@@ -1,5 +1,7 @@
+import { Component, Input, OnInit } from '@angular/core';
+
 import { ShopItem } from './../../models/shop-item';
-import { Component, OnInit, Input } from '@angular/core';
+import { ShoppingCartService } from './../../services/shopping-cart.service';
 
 @Component({
   selector: 'fa-card',
@@ -12,7 +14,7 @@ export class CardComponent implements OnInit {
   arr : Array<number>;
   avg : number;
   aplica : boolean = false;
-  constructor() {
+  constructor(private sCs: ShoppingCartService) {
     
    }
 
@@ -36,6 +38,16 @@ export class CardComponent implements OnInit {
         else{
             return undefined;
         }
+  }
+
+  addToCart(item: ShopItem){
+    console.log('algo');
+    this.sCs.addToCart({
+      name: item.name,
+      price:item.discount,
+      qty: 1,
+      imgSrc: item.imgUrl
+    });
   }
 
 }

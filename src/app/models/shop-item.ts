@@ -4,7 +4,8 @@ export class ShopItem {
     fancyName: string;
     rating: Array<number>;
     price: number;
-    discount?: number;  
+    discount?: number;
+    imgUrl?: string;  
     
     public getPreviousPrice(){
         return 2;

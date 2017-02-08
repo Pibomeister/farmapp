@@ -3,15 +3,15 @@
   <button class="navbar-toggler navbar-toggler-right"  (click)="isExpanded = !isExpanded">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">FarmApp</a>
+  <a class="navbar-brand" [routerLink]="['/']">FarmApp</a>
 
   <div class="collapse navbar-collapse"[ngClass]="{show: isExpanded}">
     <ul class="navbar-nav mr-auto mt-2 mt-md-0">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['dashboard']">Inicio</a>
+        <a class="nav-link" [routerLink]="['dashboard']"><i class="fa fa-home" aria-hidden="true"></i>Inicio</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['fof']">Link</a>
+        <a class="nav-link" [routerLink]="['cart']"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Carrito <span class="badge badge-pill badge-default">{{cartCount}}</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

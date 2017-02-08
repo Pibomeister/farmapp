@@ -4,3 +4,61 @@ html, body {
     font-family: 'Roboto', sans-serif;
   background-color: lighten(#32465A, 72%);
 }
+
+.loading-container{
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  .loading-icon{
+    animation-name: loadingAnim;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    i {
+      color: #32465A !important;
+    }
+  }
+}
+
+@keyframes loadingAnim {
+  from{ transform: scale(1); }
+  to { transform: scale(1.5);}
+}
+
+.btn {
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background-color 0.3s cubic-bezier(.25,.8,.25,1), border-bottom 0.2s ease-in-out;
+  i{
+      margin-right: .5em;
+    }
+  &.btn-primary {
+    background-color: #32465A;
+    border: none;
+    border-bottom: 2px solid darken(#32465A, 20%) !important;
+    &:hover {
+      background-color: lighten(#32465A, 20%);
+      border-bottom: 4px solid #32465A !important;
+    }
+    
+  }
+  &.btn-secondary {
+    border: 1px solid #bdc3c7;
+    border-bottom: 2px solid #bdc3c7;
+    &:hover{
+      background-color: #ecf0f1;
+      border-bottom: 4px solid darken(#bdc3c7, 20%);
+    }
+  }
+  &.btn-success {
+    background-color: #27ae60;
+    border: none;
+    border-bottom: 2px solid darken(#27ae60, 20%);
+    &:hover {
+      background-color: lighten(#27ae60, 20%);
+      border-bottom: 4px solid #27ae60;
+    }
+  }
+}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { HttpService } from '../services/http.service';
-import { ShopItem } from '../models/shop-item';
+import { ShopItem } from './../models/shop-item';
+
 @Component({
   selector: 'fa-dashboard',
   templateUrl: './dashboard.component.html',
@@ -17,8 +19,6 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         (data) => {
           this.drugs = data;
-          console.log(this.drugs.length);
-          //this.getAverages(this.drugs);
         },
         (error) => console.log(error)
       );
@@ -30,5 +30,7 @@ export class DashboardComponent implements OnInit {
       console.log(result);
     }
   }
+
+  
 
 }

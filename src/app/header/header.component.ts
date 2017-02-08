@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ShoppingCartService } from './../services/shopping-cart.service';
+
 @Component({
   selector: 'fa-header',
   templateUrl: './header.component.html',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   isExpanded = false;
-  constructor() { }
+  cartCount: number;
+  constructor(private sCs: ShoppingCartService) {}
+   
 
   ngOnInit() {
+     this.sCs.getCount().subscribe(val => {
+       this.cartCount = val;
+     });
+     this.sCs.updateCount();
   }
 
 }
