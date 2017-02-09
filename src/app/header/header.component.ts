@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { ShoppingCartService } from './../services/shopping-cart.service';
 
@@ -8,6 +8,7 @@ import { ShoppingCartService } from './../services/shopping-cart.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Input() user: string;
   isExpanded = false;
   cartCount: number;
   constructor(private sCs: ShoppingCartService) {}

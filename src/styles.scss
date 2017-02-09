@@ -29,36 +29,64 @@ html, body {
 
 .btn {
   cursor: pointer;
-  border-radius: 2px;
-  transition: background-color 0.3s cubic-bezier(.25,.8,.25,1), border-bottom 0.2s ease-in-out;
+  border-radius: 1px;
+  transition: background-color 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.2s ease-in-out;
   i{
       margin-right: .5em;
     }
+    &:hover{
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+    }
+  &.btn-google {
+    background-color: #d34836;
+    color: white;
+    border-bottom: 1px solid darken(#d34836, 10%);
+    &:hover{
+        background-color: lighten(#d34836, 10%);
+        border-bottom: 1px solid #d34836;
+    }
+  }
+  &.btn-facebook {
+    background-color: #3b5998;
+    color: white;
+    border-bottom: 1px solid darken(#3b5998, 10%);
+    &:hover{
+        background-color: lighten(#3b5998, 10%);
+        border-bottom: 1px solid #3b5998;
+    }
+  }
+
   &.btn-primary {
     background-color: #32465A;
     border: none;
-    border-bottom: 2px solid darken(#32465A, 20%) !important;
+    border-bottom: 1px solid darken(#32465A, 10%) !important;
     &:hover {
-      background-color: lighten(#32465A, 20%);
-      border-bottom: 4px solid #32465A !important;
+      background-color: lighten(#32465A, 10%);
+      border-bottom: 1px solid #32465A !important;
     }
     
   }
   &.btn-secondary {
     border: 1px solid #bdc3c7;
-    border-bottom: 2px solid #bdc3c7;
+    border-bottom: 1px solid #bdc3c7;
     &:hover{
       background-color: #ecf0f1;
-      border-bottom: 4px solid darken(#bdc3c7, 20%);
+      border-bottom: 2px solid darken(#bdc3c7, 20%);
     }
   }
   &.btn-success {
     background-color: #27ae60;
     border: none;
-    border-bottom: 2px solid darken(#27ae60, 20%);
+    border-bottom: 1px solid darken(#27ae60, 20%);
     &:hover {
       background-color: lighten(#27ae60, 20%);
-      border-bottom: 4px solid #27ae60;
+      border-bottom: 1px solid #27ae60;
     }
   }
+}
+
+.alert{
+  border: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }

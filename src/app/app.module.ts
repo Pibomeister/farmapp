@@ -1,4 +1,5 @@
 import { AppComponent } from './app.component';
+import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { CardComponent } from './dashboard/card/card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -35,6 +36,7 @@ import { appRouting } from './app.routing';
   ],
   providers: [
     HttpService, 
+    AuthService,
     ShoppingCartService
   ],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-<fa-header></fa-header>
+<fa-header *ngIf="navVisible" [user]="user"></fa-header>
 <div class="extra-top">
     <router-outlet></router-outlet>
 </div>

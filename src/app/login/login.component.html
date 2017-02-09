@@ -1,3 +1,39 @@
-<p>
-  login works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col align-self-center">
+      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title">Inicio de sesión</h4>
+          <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                <input type="<strong>email</strong>" #email="ngModel" name="email" class="form-control form-control-lg" placeholder="Correo electrónico" ngModel
+                  required pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?">
+              </div>
+              <div *ngIf="!email.valid && email.touched" class="alert alert-danger" role="alert">
+                  Por favor ingrese un <strong>correo</strong> válido.
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon t-2"><i class="fa fa-key" aria-hidden="true"></i></span>
+                <input type="password" class="form-control form-control-lg" #password="ngModel" name="password" placeholder="Contraseña" ngModel required minlength="6">
+              </div>
+              <div *ngIf="!password.valid && password.touched" class="alert alert-danger" role="alert">
+                  Por favor ingrese una <strong>contraseña</strong> válida. (Mínimo 6 caracteres)
+              </div>
+            </div>
+            <button type="submit" class="full-width btn btn-primary btn-lg btn-block" [disabled]="!f.valid"><i *ngIf="isLoading" class=" fa fa-spinner fa-pulse fa-fw"></i>Iniciar sesión</button>
+          </form>
+           <button class="btn btn-facebook btn-lg btn-block">
+             <i class="fa fa-facebook" aria-hidden="true"></i>Iniciar sesión
+           </button>
+            <button class="btn btn-google btn-lg btn-block">
+              <i class="fa fa-google-plus" aria-hidden="true"></i>Iniciar sesión
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
