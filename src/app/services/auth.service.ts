@@ -6,31 +6,27 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthService {
   currentUser: BehaviorSubject<any> = new BehaviorSubject('');
-  
+
   constructor(private http: Http) { }
-  
+
 
   createUser(email: string, password: string): Observable<any>{
-    return this.http.post('/api/users', {email, password})
+    console.log('createuser');
+    return this.http.post('http://localhost:3000/user/signup', {email, password})
       .map(res => {
-        let token = res.headers.get("x-auth");
-        localStorage.setItem('headers', JSON.stringify(token));
+        console.log(res);
+        //let token = res.headers.get("x-auth");
+        //localStorage.setItem('headers', JSON.stringify(token));
         return res.json();
-      })
-      .map(user => {
-         if (user){
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUser.next(this.getUser());
-        }
-        return !!user;
       });
   }
 
   login(email: string, password: string): Observable<boolean> {
-    return this.http.post('/api/users/login', {email, password})
+    return this.http.post('http://localhost:3000/user/login', {email, password})
       .map(res => {
-        let token = res.headers.get("x-auth");
-        localStorage.setItem('headers', JSON.stringify(token));
+        console.log(res.json());
+        let token = res.json().token;
+        localStorage.setItem('token', "JWT " + token);
         return res.json();
         })
       .map(user => {
@@ -42,13 +38,13 @@ export class AuthService {
       });
   }
 
-  logout(): Observable<any> {
+  logout() {
     let headers = new Headers({ 'x-auth':this.getHeaders()});
-    let options = new RequestOptions({ headers: headers }); 
+    let options = new RequestOptions({ headers: headers });
+    localStorage.removeItem('token');
     localStorage.removeItem('user');
-    localStorage.removeItem('headers');
     this.currentUser.next(false);
-    return this.http.delete('/api/users/me/token', options);
+    //return this.http.delete('/api/users/me/token', options);
   }
 
   getUser() {

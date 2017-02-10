@@ -15,7 +15,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { SignupComponent } from './signup/signup.component';
 import { appRouting } from './app.routing';
-
+import { AuthGuard } from './auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +37,8 @@ import { appRouting } from './app.routing';
   providers: [
     HttpService, 
     AuthService,
-    ShoppingCartService
+    ShoppingCartService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

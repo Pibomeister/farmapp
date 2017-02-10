@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
     this.httpService.getData()
       .subscribe(
         (data) => {
+          console.log(data);
           this.drugs = data;
         },
         (error) => console.log(error)

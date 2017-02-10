@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit {
       this.auth.createUser(f.value.email, f.value.password).subscribe((user)=> {
       f.reset();
       console.log(user);
-      this.router.navigateByUrl('/dashboard');
+      this.router.navigateByUrl('/login');
     }, (err)=> {
       alert(err);
       f.reset();

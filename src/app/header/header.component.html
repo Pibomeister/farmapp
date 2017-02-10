@@ -20,12 +20,12 @@
     </form>
     <ul ngbDropdown class="navbar-nav user-nav">
       <li  ngbDropdownToggle class="nav-item user-item">
-        <a  class="user-icon"><i class="fa fa-user-o"></i>{{user}}</a>
+        <a  class="user-icon"><i class="fa fa-user-o"></i>{{user.id}}</a>
       </li>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
         <button class="dropdown-item">Action - 1</button>
         <button class="dropdown-item">Another Action</button>
-        <button class="dropdown-item">Something else is here</button>
+        <button class="dropdown-item" (click)="onLogout()">Logout</button>
       </div>
     </ul>
   </div>
