@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import 'mixins';
+@import 'tooltip';
 html, body {
     font-family: 'Roboto', sans-serif;
   background-color: lighten(#32465A, 72%);
@@ -17,7 +19,7 @@ html, body {
     animation-iteration-count: infinite;
     animation-direction: alternate;
     i {
-      color: #32465A !important;
+      color: #5f6f81 !important;
     }
   }
 }
@@ -58,21 +60,22 @@ html, body {
   }
 
   &.btn-primary {
-    background-color: #32465A;
+    background-color: #5f6f81;
     border: none;
-    border-bottom: 1px solid darken(#32465A, 10%) !important;
+    border-bottom: 1px solid darken(#5f6f81, 10%) !important;
     &:hover {
-      background-color: lighten(#32465A, 10%);
-      border-bottom: 1px solid #32465A !important;
+      background-color: lighten(#5f6f81, 10%);
+      border-bottom: 1px solid #5f6f81 !important;
     }
     
   }
   &.btn-secondary {
     border: 1px solid #bdc3c7;
     border-bottom: 1px solid #bdc3c7;
-    &:hover{
+    &:hover:not(.active){
       background-color: #ecf0f1;
-      border-bottom: 2px solid darken(#bdc3c7, 20%);
+      color: #000 !important;
+      border-bottom: 1px solid darken(#bdc3c7, 10%);
     }
   }
   &.btn-success {

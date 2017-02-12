@@ -11,7 +11,7 @@
         <a class="nav-link" [routerLink]="['dashboard']"><i class="fa fa-home" aria-hidden="true"></i>Inicio</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['cart']"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Carrito <span class="badge badge-pill badge-default">{{cartCount}}</span></a>
+        <a class="nav-link" [routerLink]="['cart']"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Carrito <span *ngIf="cartCount > 0" class="badge badge-pill badge-default">{{cartCount}}</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -20,12 +20,13 @@
     </form>
     <ul ngbDropdown class="navbar-nav user-nav">
       <li  ngbDropdownToggle class="nav-item user-item">
-        <a  class="user-icon"><i class="fa fa-user-o"></i>{{user.id}}</a>
+        <a  class="user-icon"><i class="fa fa-user-o"></i></a>
       </li>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item">Action - 1</button>
-        <button class="dropdown-item">Another Action</button>
-        <button class="dropdown-item" (click)="onLogout()">Logout</button>
+        <button routerLink="account" *ngIf="user" class="dropdown-item"><i class="fa fa-user-circle" aria-hidden="true"></i> Perfil</button>
+        <button  *ngIf="user" class="dropdown-item" (click)="onLogout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</button>
+        <button routerLink="login" *ngIf="!user" class="dropdown-item"><i class="fa fa-sign-in" aria-hidden="true"></i> Iniciar Sesi&oacute;n</button>
+        <button routerLink="signup" *ngIf="!user" class="dropdown-item"><i class="fa fa-user-plus" aria-hidden="true"></i> Registrarse</button>
       </div>
     </ul>
   </div>

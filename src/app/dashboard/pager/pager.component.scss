@@ -1,0 +1,13 @@
+ul, p{
+    margin-top: 1rem !important;
+}
+li{
+    cursor: pointer;
+}
+.active{
+    a {
+        background: #5f6f81 !important;
+    }
+    
+    color: white;
+}

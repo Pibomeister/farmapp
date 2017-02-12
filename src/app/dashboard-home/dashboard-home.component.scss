@@ -1,0 +1,84 @@
+@mixin cover-background($img-uri...) {
+    background: url($img-uri) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+h3 {
+    color: #5f6f81 !important;
+    i {
+        margin-right: 10px;
+    }
+    font-weight: 100;
+    padding: 20px 0;
+}
+.slide{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: rgba(0,0,0,0.2);
+    img {
+       margin: 0 auto;
+    }
+}
+
+.home-link{
+    background: url('assets/medicine.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  border: 10px solid #FDFEFE;
+  text-align: center;
+  position: relative;
+  transition: background-color 0.25s ease-in-out;
+  &:nth-of-type(1), &:nth-of-type(8){
+        background-color: rgba(200,100,0,.5); // Tint color
+        background-blend-mode: multiply;
+        &:hover{
+            background-color: rgba(200,100,0,.7);
+        }
+  }
+   &:nth-of-type(2), &:nth-of-type(7){
+      background-color: rgba(100,200,100,.5); // Tint color
+        background-blend-mode: multiply;
+        &:hover{
+            background-color: rgba(100,200,100, .7);
+        }
+  }
+   &:nth-of-type(3), &:nth-of-type(6){
+      background-color: rgba(0,100,200,.5); // Tint color
+        background-blend-mode: multiply;
+         &:hover{
+            background-color: rgba(0,100,200, .7);
+        }
+  }
+   &:nth-of-type(4), &:nth-of-type(5){
+      background-color: rgba(200,100,200,.5); // Tint color
+        background-blend-mode: multiply;
+        &:hover{
+            background-color: rgba(200,100,200, .7);
+        }
+  }
+  a {
+      h4{
+        padding-top: 10px;
+        line-height: 35px;
+      }
+      
+      color: white !important;
+  }  
+    //@include cover-background('https://pbs.twimg.com/media/CXusIhTUoAAtTvO.jpg', 80%, 20%, "scroll"); //Still tidy - even the quotes won't mess it up!
+}
+.bottom-margin{
+    margin-bottom: 10px;
+}
+.card-columns{
+    margin-top: 10px;
+}
+
+// .cover-full{
+//     //min-width: 100%;
+// }

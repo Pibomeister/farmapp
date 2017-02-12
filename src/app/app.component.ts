@@ -13,10 +13,10 @@ export class AppComponent {
   
   constructor(private auth: AuthService, private router: Router){
     router.events.subscribe((val) => {
-        if(val.url === '/dashboard' || val.url === '/cart' || val.url === '/'){
-          this.navVisible = true;
-        } else {
+        if(val.url === '/login' || val.url === '/singup' || val.url === '/fof'){
           this.navVisible = false;
+        } else {
+          this.navVisible = true;
         }
     });
   }

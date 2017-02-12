@@ -4,12 +4,11 @@ import { ShopItem } from './../../models/shop-item';
 import { ShoppingCartService } from './../../services/shopping-cart.service';
 
 @Component({
-  selector: 'fa-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  selector: 'fa-list-item',
+  templateUrl: './list-item.component.html',
+  styleUrls: ['./list-item.component.scss']
 })
-export class CardComponent implements OnInit {
-  
+export class ListItemComponent implements OnInit {
   @Input() shopItem: ShopItem;
   arr : Array<number>;
   avg : number;
@@ -21,6 +20,7 @@ export class CardComponent implements OnInit {
   ngOnInit() {
     this.avg = this.getAverage(this.shopItem);
     this.arr = new Array(this.avg);
+    console.log(this.arr);
   }
 
   getAverage(shopItem : ShopItem){
