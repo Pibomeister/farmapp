@@ -1,5 +1,5 @@
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
-import { Headers, Http, RequestOptions, Response } from '@angular/http';
+import { Headers, Http, RequestOptions, Response, Jsonp } from '@angular/http';
 
 import { Injectable } from '@angular/core';
 
@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   currentUser: BehaviorSubject<any> = new BehaviorSubject('');
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private jsonp : Jsonp) { }
 
 
   createUser(email: string, password: string): Observable<any>{
@@ -38,6 +38,26 @@ export class AuthService {
       });
   }
 
+  facebookLogin():  Observable<boolean> {
+    return this.http.get('http://localhost:3000/user/login/facebook/callback')
+      .map(res => {
+        console.log(res.json());
+        let token = res.json().token;
+        localStorage.setItem('token', token);
+        return res.json();
+        });
+      
+  }
+
+  registerUser(user){
+    console.log('registeruser');
+    return this.http.post('http://localhost:3000/user/fbuser', {user:user})
+      .map(res => {
+        //console.log(res);
+        return res.json();
+      });
+  }
+
   logout() {
     let headers = new Headers({ 'x-auth':this.getHeaders()});
     let options = new RequestOptions({ headers: headers });
@@ -49,7 +69,7 @@ export class AuthService {
 
   getUser() {
     var user = localStorage.getItem('user');
-    return user? JSON.parse(user) : false;
+    return user ? JSON.parse(user) : false;
   }
 
   getHeaders() {

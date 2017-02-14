@@ -13,7 +13,7 @@ export class AppComponent {
   
   constructor(private auth: AuthService, private router: Router){
     router.events.subscribe((val) => {
-        if(val.url === '/login' || val.url === '/singup' || val.url === '/fof'){
+        if(val.url === '/login' || val.url === '/signup' || val.url === '/fof'){
           this.navVisible = false;
         } else {
           this.navVisible = true;

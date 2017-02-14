@@ -2,13 +2,14 @@ import { AccountComponent } from './account/account.component';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './services/auth.service';
+import { FacebookService } from 'ng2-facebook-sdk';
 import { BrowserModule } from '@angular/platform-browser';
 import { CardComponent } from './dashboard/card/card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FofComponent } from './fof/fof.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { HttpService } from './services/http.service';
 import { ListItemComponent } from './dashboard/list-item/list-item.component';
 import { LoginComponent } from './login/login.component';
@@ -41,6 +42,7 @@ import { DashboardHomeComponent } from './dashboard-home/dashboard-home.componen
     BrowserModule,
     FormsModule,
     HttpModule,
+    JsonpModule,
     appRouting,
     NgbModule.forRoot()
   ],
@@ -49,7 +51,8 @@ import { DashboardHomeComponent } from './dashboard-home/dashboard-home.componen
     AuthService,
     ShoppingCartService,
     AuthGuard,
-    PagerService
+    PagerService,
+    FacebookService
   ],
   bootstrap: [AppComponent]
 })
