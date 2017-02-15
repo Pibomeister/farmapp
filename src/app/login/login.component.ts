@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
                                    appId: '287041178379781',
                                    xfbml: true,
                                    cookie : true,
-                                   version: 'v2.6'
+                                   version: 'v2.0'
                                    };
     this.fb.init(fbParams);
   }
@@ -38,10 +38,12 @@ export class LoginComponent implements OnInit {
 
   facebookLogin(){
 
-    this.fb.getLoginStatus().then((value: FacebookLoginStatus) => {
+    /*this.fb.getLoginStatus().then((value: FacebookLoginStatus) => {
       if(value.status === "connected"){
-          this.fb.api('/me', 'get', {fields: 'id,name,email'}).then(
+          this.fb.api('/me', 'get', {fields: 'name,email,id'}).then(
+
             (data: any) => {
+              console.log('DATA', data);
               let user = {
                 id : data.id,
                 name : data.name,
@@ -59,26 +61,24 @@ export class LoginComponent implements OnInit {
           );
 
       }
-      else{
-            this.fb.login().then((response: FacebookLoginResponse) =>
+      else{*/
+            this.fb.login({scope: 'email'}).then((response: FacebookLoginResponse) =>
 
               {console.log(response);
 
               if(response.status === "connected"){
-                localStorage.setItem('user', response.authResponse.userID);
-                let token = response.authResponse.accessToken
-                localStorage.setItem('token', token);
-                this.fb.api('/me', 'get', {fields: 'id,name,email'}).then(
+                this.fb.api('/me?fields=name,email', 'get', {fields: 'name,email,id', scope:'email'}).then(
                   (data: any) => {
+                    console.log('DATA', data);
                     let user = {
                       id : data.id,
                       name : data.name,
-                      email: data.email,
-                      token: token
+                      email: data.email
                     }
                     console.log(user);
                     this.auth.registerUser(user).subscribe((user) => {
-                      console.log(user);
+                      localStorage.setItem('user', user.id);
+                      localStorage.setItem('token', user.token);
                     });
                   }
                 );
@@ -89,8 +89,8 @@ export class LoginComponent implements OnInit {
             ,(error: any) => console.error(error)
           );
       }
-    });
+    //});
 
-  }
+  //}
 
 }
