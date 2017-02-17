@@ -1,8 +1,8 @@
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 
-import { Injectable } from '@angular/core';
 import {FacebookService} from "ng2-facebook-sdk";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthService {
@@ -12,10 +12,8 @@ export class AuthService {
 
 
   createUser(email: string, password: string): Observable<any>{
-    console.log('createuser');
     return this.http.post('http://localhost:3000/user/signup', {email, password})
       .map(res => {
-        console.log(res);
         //let token = res.headers.get("x-auth");
         //localStorage.setItem('headers', JSON.stringify(token));
         return res.json();
@@ -25,7 +23,6 @@ export class AuthService {
   login(email: string, password: string): Observable<boolean> {
     return this.http.post('http://localhost:3000/user/login', {email, password})
       .map(res => {
-        console.log(res.json());
         let token = res.json().token;
         localStorage.setItem('token', token);
         return res.json();
@@ -40,13 +37,21 @@ export class AuthService {
   }
 
   facebookLogin():  Observable<boolean> {
+    console.log('facebooklogin');
     return this.http.get('http://localhost:3000/user/login/facebook/callback')
-      .map(res => {
+       .map(res => {
         console.log(res.json());
         let token = res.json().token;
         localStorage.setItem('token', token);
         return res.json();
-        });
+        })
+      .map(user => {
+        if (user){
+          localStorage.setItem('user', JSON.stringify(user.id));
+          this.currentUser.next(this.getUser());
+        }
+        return !!user;
+      });
 
   }
 
@@ -54,8 +59,16 @@ export class AuthService {
     console.log('registeruser');
     return this.http.post('http://localhost:3000/user/fbuser', {user:user})
       .map(res => {
-        this.currentUser.next(this.getUser());
+        console.log(res.json());
+        let token = res.json().token;
+        localStorage.setItem('token', token);
         return res.json();
+        }).map(user => {
+        if (user){
+          localStorage.setItem('user', JSON.stringify(user.id));
+          this.currentUser.next(this.getUser());
+        }
+        return !!user;
       });
   }
 

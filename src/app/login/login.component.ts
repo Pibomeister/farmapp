@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FacebookInitParams, FacebookLoginResponse, FacebookLoginStatus, FacebookService } from 'ng2-facebook-sdk';
 
 import { AuthService } from './../services/auth.service';
-import { FacebookService, FacebookLoginResponse, FacebookInitParams, FacebookLoginStatus } from 'ng2-facebook-sdk';
 import { Router } from '@angular/router';
 
 @Component({
@@ -76,13 +76,12 @@ export class LoginComponent implements OnInit {
                       email: data.email
                     }
                     console.log(user);
-                    this.auth.registerUser(user).subscribe((user) => {
-                      localStorage.setItem('user', user.id);
-                      localStorage.setItem('token', user.token);
-                    });
+                    this.auth.registerUser(user).subscribe(
+                      user => { if(user) this.router.navigateByUrl('/dashboard') }
+                    );
                   }
                 );
-                this.router.navigateByUrl('/dashboard');
+                
               }
 
             }
