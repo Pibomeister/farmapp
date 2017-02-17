@@ -55,8 +55,8 @@ export class AuthService {
 
   }
 
-  registerUser(user){
-    console.log('registeruser');
+  registerFacebookUser(user){
+    console.log('registerFBUser');
     return this.http.post('http://localhost:3000/user/fbuser', {user:user})
       .map(res => {
         console.log(res.json());
@@ -72,16 +72,29 @@ export class AuthService {
       });
   }
 
+  registerGoogleUser(user){
+    console.log('registerGoogleUser');
+    return this.http.post('http://localhost:3000/user/googleuser', {user:user})
+      .map(res => {
+        console.log(res.json());
+        let token = res.json().token;
+        localStorage.setItem('token', token);
+        return res.json();
+      }).map(user => {
+        if (user){
+          localStorage.setItem('user', JSON.stringify(user.id));
+          this.currentUser.next(this.getUser());
+        }
+        return !!user;
+      });
+  }
+
   logout() {
     let headers = new Headers({ 'x-auth':this.getHeaders()});
     let options = new RequestOptions({ headers: headers });
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    /*this.fb.logout().then(()=>{
-      console.log('fb logout succesful');
-    });*/
     this.currentUser.next(false);
-    //return this.http.delete('/api/users/me/token', options);
   }
 
   getUser() {
