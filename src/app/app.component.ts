@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
       .map(val => (<NavigationEnd>val).urlAfterRedirects)
       .subscribe(url => this.navVisible = this._noNav.indexOf(url) === -1);
     this.auth.currentUser.subscribe(
-      user => this.user = Object.assign({}, user),
+      user => this.user = user,
       err => this.user = ''
     );
   }

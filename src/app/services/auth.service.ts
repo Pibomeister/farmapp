@@ -46,8 +46,8 @@ export class AuthService {
     this.currentUser.next(false);
   }
 
-  getUser() {
-    var user = localStorage.getItem('user');
+  getUser(): any  {
+    var user = localStorage.getItem('user');   
     return user ? user : false;
   }
 

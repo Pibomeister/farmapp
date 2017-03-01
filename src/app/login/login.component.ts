@@ -98,7 +98,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
                 );
 
               }
-    }, (err) => { console.log(err); alert('Credenciales inválidas'); })
+    }, (err) => { alert('Credenciales inválidas'); })
   }
 
  
