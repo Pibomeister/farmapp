@@ -1,5 +1,5 @@
 @mixin cover-background($img-uri...) {
-    background: url($img-uri) no-repeat center center fixed; 
+    background: url($img-uri) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -25,7 +25,7 @@ h3 {
 }
 
 .home-link{
-    background: url('assets/medicine.jpg') no-repeat center center fixed; 
+    background: url('/assets/medicine.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -67,9 +67,9 @@ h3 {
         padding-top: 10px;
         line-height: 35px;
       }
-      
+
       color: white !important;
-  }  
+  }
     //@include cover-background('https://pbs.twimg.com/media/CXusIhTUoAAtTvO.jpg', 80%, 20%, "scroll"); //Still tidy - even the quotes won't mess it up!
 }
 .bottom-margin{

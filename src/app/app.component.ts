@@ -10,15 +10,16 @@ import { Router } from '@angular/router';
 export class AppComponent {
   navVisible: boolean = false;
   user: any = false;
+  noHeader: Array<string> = ['/login', '/signup'];
   
   constructor(private auth: AuthService, private router: Router){
-    router.events.subscribe((val) => {
-        if(val.url === '/login' || val.url === '/signup' || val.url === '/fof'){
-          this.navVisible = false;
-        } else {
-          this.navVisible = true;
-        }
-    });
+    router.events
+    .map(val => val.url)
+    .subscribe( url => this.navVisible = this.hasHeader(url));
+  }
+  
+  hasHeader(route: string) : boolean {
+    return this.noHeader.indexOf(route) === -1;
   }
 
   ngOnInit(){

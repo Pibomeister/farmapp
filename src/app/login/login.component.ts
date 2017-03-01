@@ -1,20 +1,22 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FacebookInitParams, FacebookLoginResponse, FacebookLoginStatus, FacebookService } from 'ng2-facebook-sdk';
 
 import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
+
 declare const gapi: any;
 @Component({
   selector: 'fa-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-//declare const gapi: any;
+
 export class LoginComponent implements OnInit, AfterViewInit {
 
   constructor(private auth: AuthService, private router: Router, private fb: FacebookService) { }
 
   public auth2: any;
+
   public googleInit() {
     let that = this;
     gapi.load('auth2', function () {
@@ -34,15 +36,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
         let profile = googleUser.getBasicProfile();
         //console.log('Token || ' + googleUser.getAuthResponse().id_token);
         let guser = {
-          id : profile.getId(),
-          name : profile.getName(),
-          email : profile.getEmail()
+          id: profile.getId(),
+          name: profile.getName(),
+          email: profile.getEmail()
         }
 
         console.log('user auth google successful', guser);
 
         that.auth.registerGoogleUser(guser).subscribe(
-          user => { if(user) that.router.navigateByUrl('/dashboard') }
+          user => { if (user) this.router.navigateByUrl('/dashboard') }
         );
 
       }, function (error) {
@@ -50,62 +52,49 @@ export class LoginComponent implements OnInit, AfterViewInit {
       });
   }
 
-  ngAfterViewInit(){
-      this.googleInit();
+  ngAfterViewInit() {
+    this.googleInit();
   }
 
   ngOnInit() {
     let fbParams: FacebookInitParams = {
-                                   appId: '287041178379781',
-                                   xfbml: true,
-                                   cookie : true,
-                                   version: 'v2.0'
-                                   };
+      appId: '287041178379781',
+      xfbml: true,
+      cookie: true,
+      version: 'v2.0'
+    };
     this.fb.init(fbParams);
   }
 
-  onSubmit(f){
+  onSubmit(f) {
     let body = f.value;
-    this.auth.login(body.email, body.password).subscribe((success)=> {
-
-      if(success){
+    this.auth.login(body.email, body.password).subscribe((success) => {
+      if (success) {
         this.router.navigateByUrl('/dashboard');
       } else {
         alert('Credenciales inválidas');
       }
       f.reset();
-    }, (err)=> { console.log(err); alert('Credenciales inválidas');} )
+    }, (err) => { console.log(err); alert('Credenciales inválidas'); })
   }
 
-  facebookLogin(){
-            this.fb.login({scope: 'email'}).then((response: FacebookLoginResponse) =>
-
-              {console.log(response);
-
-              if(response.status === "connected"){
-                this.fb.api('/me?fields=name,email', 'get', {fields: 'name,email,id', scope:'email'}).then(
-                  (data: any) => {
-                    console.log('DATA', data);
-                    let user = {
-                      id : data.id,
-                      name : data.name,
-                      email: data.email
-                    }
-                    console.log(user);
-                    this.auth.registerFacebookUser(user).subscribe(
-                      user => { if(user) this.router.navigateByUrl('/dashboard') }
-                    );
-                  }
-                );
-
-              }
-
+  facebookLogin() {
+    this.fb.login({ scope: 'email' }).then((response: FacebookLoginResponse) => {
+      if (response.status === "connected") {
+        this.fb.api('/me?fields=name,email', 'get', { fields: 'name,email,id', scope: 'email' }).then(
+          (data: any) => {
+            let user = {
+              id: data.id,
+              name: data.name,
+              email: data.email
             }
-            ,(error: any) => console.error(error)
-          );
+            this.auth.registerFacebookUser(user).subscribe(
+              user => { if (user) this.router.navigateByUrl('/dashboard') }
+            );
+          }
+        );
       }
-    //});
-
-  //}
+    }, (error: any) => console.error(error));
+  }
 
 }
