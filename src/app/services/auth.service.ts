@@ -1,6 +1,5 @@
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
-
 import { FacebookService } from "ng2-facebook-sdk";
 import { Injectable } from '@angular/core';
 
@@ -8,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   currentUser: BehaviorSubject<any> = new BehaviorSubject(this.getUser());
 
-  constructor(private http: Http, private fb: FacebookService) { }
+  constructor(private http: Http) { }
 
   private _access(url: string, payload: any): Observable<boolean | Error> {
     return this.http.post(url, payload)
@@ -27,8 +26,9 @@ export class AuthService {
       .map(res => res.json());
   }
 
+
   login(email: string, password: string): Observable<boolean> {
-    return this._access('http://localhost:3000/user/login', { email, password });
+    return this._access('http://localhost:3000/user/login', {email, password});
   }
 
   registerFacebookUser(user) {
@@ -37,6 +37,7 @@ export class AuthService {
 
   registerGoogleUser(user) {
     return this._access('http://localhost:3000/user/googleuser', { user: user });
+
   }
 
   logout() {
@@ -50,7 +51,7 @@ export class AuthService {
     return user ? user : false;
   }
 
-  getHeaders() {
+  getHeaders(): Headers | boolean {
     let headers = localStorage.getItem('headers');
     return headers ? JSON.parse(headers) : false;
   }

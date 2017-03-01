@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) { }
 
+
   ngOnInit() {
     this.router.events
       .filter(evt => evt instanceof NavigationEnd)

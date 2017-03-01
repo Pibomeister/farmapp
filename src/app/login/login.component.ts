@@ -1,20 +1,22 @@
+
 import { Component, OnInit, AfterViewInit, NgZone } from '@angular/core';
 import { FacebookInitParams, FacebookLoginResponse, FacebookService } from 'ng2-facebook-sdk';
-
 import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
+
 declare const gapi: any;
 @Component({
   selector: 'fa-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-//declare const gapi: any;
+
 export class LoginComponent implements OnInit, AfterViewInit {
 
   constructor(private auth: AuthService, private router: Router, private fb: FacebookService, private zone : NgZone) { }
 
   public auth2: any;
+
   public googleInit() {
     gapi.load('auth2', () => {
       this.auth2 = gapi.auth2.init({
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.auth2.attachClickHandler(element, {},
       (googleUser) => {
 
+
         this.zone.run(()=>{
           let profile = googleUser.getBasicProfile();
           //console.log('Token || ' + googleUser.getAuthResponse().id_token);
@@ -37,38 +40,35 @@ export class LoginComponent implements OnInit, AfterViewInit {
             name : profile.getName(),
             email : profile.getEmail()
           }
-
-
           this.auth.registerGoogleUser(guser).subscribe(
             user => { if(user) this.router.navigateByUrl('/dashboard') }
           );
         })
-        
+
 
       }, function (error) {
         alert(JSON.stringify(error, undefined, 2));
       });
   }
 
-  ngAfterViewInit(){
-      this.googleInit();
+  ngAfterViewInit() {
+    this.googleInit();
   }
 
   ngOnInit() {
     let fbParams: FacebookInitParams = {
-                                   appId: '287041178379781',
-                                   xfbml: true,
-                                   cookie : true,
-                                   version: 'v2.0'
-                                   };
+      appId: '287041178379781',
+      xfbml: true,
+      cookie: true,
+      version: 'v2.0'
+    };
     this.fb.init(fbParams);
   }
 
-  onSubmit(f){
+  onSubmit(f) {
     let body = f.value;
-    this.auth.login(body.email, body.password).subscribe((success)=> {
-
-      if(success){
+    this.auth.login(body.email, body.password).subscribe((success) => {
+      if (success) {
         this.router.navigateByUrl('/dashboard');
       } else {
         alert('Credenciales inválidas');
@@ -98,13 +98,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
                 );
 
               }
+    }, (err) => { console.log(err); alert('Credenciales inválidas'); })
+  }
 
-            }
-            ,(error: any) => console.error(error)
-          );
-      }
-    //});
-
-  //}
+ 
 
 }
