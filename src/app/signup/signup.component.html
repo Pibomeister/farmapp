@@ -7,6 +7,15 @@
           <form #f="ngForm" (ngSubmit)="onSubmit(f)">
             <div class="form-group">
               <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <input type="text" #name="ngModel" name="name" class="form-control form-control-lg" placeholder="Nombre" ngModel required>
+              </div>
+              <div *ngIf="!name.valid && name.touched" class="alert alert-danger" role="alert">
+                  Por favor ingrese su <strong>nombre</strong> completo.
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                 <input type="email" #email="ngModel" name="email" class="form-control form-control-lg" placeholder="Correo electrónico" ngModel required pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?">
               </div>
@@ -33,12 +42,6 @@
               </div>
             </div>
             <button type="submit" class="full-width btn btn-primary btn-lg btn-block" [disabled]="!f.valid"><i *ngIf="isLoading" class=" fa fa-spinner fa-pulse fa-fw"></i>Registrarse</button>
-            <!--button class="btn btn-facebook btn-lg btn-block">
-             <i class="fa fa-facebook" aria-hidden="true"></i>Registrarse
-           </button>
-            <!--button class="btn btn-google btn-lg btn-block">
-              <i class="fa fa-google-plus" aria-hidden="true"></i>Registrarse
-            </button-->
             <div class="extras">Al crear una cuenta, declaras estar de acuerdo con nuestros Términos de Uso y nuestro Aviso de Privacidad.
               <hr> ¿Ya tienes cuenta? <a [routerLink]="['/login']">inicia sesión</a>
             </div>

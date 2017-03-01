@@ -16,7 +16,7 @@ const routes: Routes = [
     { path: 'dashboard/:category', component: DashboardComponent },
     { path: 'dashboard/:category/:subCategory', component: DashboardComponent },
     { path: 'cart', component: ShoppingCartComponent },
-    { path: 'account', component: AccountComponent, canActivate: [AuthGuard]  },
+    { path: 'account', component: AccountComponent, canActivate: [AuthGuard], loadChildren : './account/account.module#AccountModule' },
     { path: 'fof', component: FofComponent },
     { path: '', pathMatch:'full', redirectTo: 'dashboard' },
     { path: '**', pathMatch:'full', redirectTo: 'fof' }

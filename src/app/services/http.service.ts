@@ -17,6 +17,16 @@ export class HttpService {
       .catch(this.handleError);
   }
 
+  getUser(){
+    let headers = new Headers({ 'Authorization': localStorage.getItem('token')});
+    let options = new RequestOptions({ headers: headers });
+    let params = localStorage.getItem('user');
+    params = params.replace(/["']/g, "");
+    return this.http.get('http://localhost:3000/user/' + params, options)
+      .map((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
 
   private handleError (error: any) {
     console.log(error);

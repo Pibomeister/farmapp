@@ -9,7 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FofComponent } from './fof/fof.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { HttpService } from './services/http.service';
 import { ListItemComponent } from './dashboard/list-item/list-item.component';
 import { LoginComponent } from './login/login.component';
@@ -22,6 +22,8 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { SignupComponent } from './signup/signup.component';
 import { appRouting } from './app.routing';
 import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
+import {AccountDetailComponent} from "./account/account-detail.component";
+import {AccountEditComponent} from "./account/account-edit.component";
 
 @NgModule({
   declarations: [
@@ -42,12 +44,11 @@ import { DashboardHomeComponent } from './dashboard-home/dashboard-home.componen
     BrowserModule,
     FormsModule,
     HttpModule,
-    JsonpModule,
     appRouting,
     NgbModule.forRoot()
   ],
   providers: [
-    HttpService, 
+    HttpService,
     AuthService,
     ShoppingCartService,
     AuthGuard,

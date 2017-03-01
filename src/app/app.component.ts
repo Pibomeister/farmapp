@@ -1,29 +1,26 @@
 import { AuthService } from './services/auth.service';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'fa-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  navVisible: boolean = false;
+export class AppComponent implements OnInit {
+  navVisible;
   user: any = false;
-  
-  constructor(private auth: AuthService, private router: Router){
-    router.events.subscribe((val) => {
-        if(val.url === '/login' || val.url === '/signup' || val.url === '/fof'){
-          this.navVisible = false;
-        } else {
-          this.navVisible = true;
-        }
-    });
-  }
+  private _noNav = ['/login', '/signup', '/fof'];
 
-  ngOnInit(){
+  constructor(private auth: AuthService, private router: Router) { }
+
+  ngOnInit() {
+    this.router.events
+      .filter(evt => evt instanceof NavigationEnd)
+      .map(val => (<NavigationEnd>val).urlAfterRedirects)
+      .subscribe(url => this.navVisible = this._noNav.indexOf(url) === -1);
     this.auth.currentUser.subscribe(
-      user => this.user = user,
+      user => this.user = Object.assign({}, user),
       err => this.user = ''
     );
   }

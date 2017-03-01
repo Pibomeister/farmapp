@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
   onSubmit(f){
     let form = f.value;
     if(form.password === form.password2){
-      this.auth.createUser(f.value.email, f.value.password).subscribe((user)=> {
+      this.auth.createUser(f.value.name, f.value.email, f.value.password).subscribe((user)=> {
       f.reset();
       console.log(user);
       this.router.navigateByUrl('/login');
