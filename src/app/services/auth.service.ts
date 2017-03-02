@@ -1,5 +1,6 @@
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
+
 import { FacebookService } from "ng2-facebook-sdk";
 import { Injectable } from '@angular/core';
 
@@ -26,7 +27,6 @@ export class AuthService {
       .map(res => res.json());
   }
 
-
   login(email: string, password: string): Observable<boolean> {
     return this._access('http://localhost:3000/user/login', {email, password});
   }
@@ -37,7 +37,6 @@ export class AuthService {
 
   registerGoogleUser(user) {
     return this._access('http://localhost:3000/user/googleuser', { user: user });
-
   }
 
   logout() {

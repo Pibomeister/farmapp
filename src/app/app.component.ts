@@ -1,6 +1,9 @@
-import { AuthService } from './services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { NgRedux, select } from 'ng2-redux';
+
+import { AuthService } from './services/auth.service';
+import { IAppState } from './store';
 
 @Component({
   selector: 'fa-root',
@@ -10,9 +13,10 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppComponent implements OnInit {
   navVisible;
   user: any = false;
+  @select(s => s.cart.cartCount) cartCount;
   private _noNav = ['/login', '/signup', '/fof'];
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private ngRedux: NgRedux<IAppState>,  private auth: AuthService, private router: Router) { }
 
 
   ngOnInit() {

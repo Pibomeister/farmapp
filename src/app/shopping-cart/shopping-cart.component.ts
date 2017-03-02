@@ -1,22 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { DECREASE_CART, INCREASE_CART, REMOVE_CART } from './actions';
+import { NgRedux, select } from 'ng2-redux';
 
-import { ShoppingCartService } from './../services/shopping-cart.service';
+import { Component } from '@angular/core';
+import { IAppState } from './../store';
 
 @Component({
   selector: 'fa-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss']
 })
-export class ShoppingCartComponent implements OnInit {
-  items: Array<any>;
-  total: number;
-  constructor(private sCs: ShoppingCartService) { }
+export class ShoppingCartComponent {
+  @select(s => s.cart.cartItems) items;
+  @select(s => s.cart.cartCount) count;
+  @select(s => s.cart.cartTotal) total;
+  constructor(private ngRedux: NgRedux<IAppState>) { }
 
-  ngOnInit() {
-   this.sCs.getItems().subscribe((val)=> {
-      this.items = val;
+  onIncrease(i: number) {
+    this.ngRedux.dispatch({
+      type: INCREASE_CART,
+      index: i
     });
-    this.total = this.sCs.getTotal();
+  }
+
+  onDecrease(i: number) {
+    this.ngRedux.dispatch({
+      type: DECREASE_CART,
+      index: i
+    });
+  }
+
+  onRemove(i: number) {
+    this.ngRedux.dispatch({
+      type: REMOVE_CART,
+      index: i
+    });
   }
 
 }

@@ -1,6 +1,6 @@
+import { Headers, Http, RequestOptions, Response } from "@angular/http";
+
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
-import 'rxjs/Rx';
 import { Observable } from "rxjs/Rx";
 
 @Injectable()
@@ -9,7 +9,11 @@ export class HttpService {
   constructor(private http: Http) {
   }
 
-  getData() {
+  getData(classification?: string, subclass? : string) {
+    let url = 'http://localhost:3000/api/drugs';
+    if (classification) url += `/${classification}`;
+    if (subclass) url += `/${subclass}`;
+    console.log(url);
     let headers = new Headers({ 'Authorization': localStorage.getItem('token')});
     let options = new RequestOptions({ headers: headers });
     return this.http.get('http://localhost:3000/api/drugs', options)

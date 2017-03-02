@@ -11,7 +11,7 @@
         <a class="nav-link" [routerLink]="['dashboard']"><i class="fa fa-home" aria-hidden="true"></i>Inicio</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['cart']"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Carrito <span *ngIf="cartCount > 0" class="badge badge-pill badge-default">{{cartCount}}</span></a>
+        <a class="nav-link" [routerLink]="['cart']"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Carrito <span [hidden]="(cartCount | async) === 0" class="badge badge-pill badge-default">{{cartCount | async}}</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
