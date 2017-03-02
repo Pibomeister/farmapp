@@ -27,6 +27,12 @@ export class AuthService {
       .map(res => res.json());
   }
 
+  secondStep(usermail : string) : Observable<any> {
+    return this.http.get('http://localhost:3000/user/send/' + usermail)
+      .map(res => res.json());
+  }
+
+
   login(email: string, password: string): Observable<boolean> {
     return this._access('http://localhost:3000/user/login', {email, password});
   }

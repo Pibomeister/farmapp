@@ -16,22 +16,25 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(f){
+  onSubmit(f) {
     let form = f.value;
-    if(form.password === form.password2){
-      this.auth.createUser(f.value.name, f.value.email, f.value.password).subscribe((user)=> {
-      f.reset();
-      console.log(user);
-      this.router.navigateByUrl('/login');
-    }, (err)=> {
-      alert(err);
-      f.reset();
-    });
+    if (form.password === form.password2) {
+      this.auth.createUser(f.value.name, f.value.email, f.value.password).map((data) => {
+        f.reset();
+        return data.mail;
+      }).switchMap(usermail => this.auth.secondStep(usermail))
+        .subscribe((info) => {
+          console.log(info);
+          this.router.navigateByUrl('/');
+        }, (err) => {
+          alert(err);
+          f.reset();
+        });
     } else {
       alert('Passwords must match');
       f.reset();
     }
-    
+
   }
 
 }
