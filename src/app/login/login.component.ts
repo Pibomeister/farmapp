@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   constructor(private auth: AuthService, private router: Router, private fb: FacebookService, private zone : NgZone) { }
 
   public auth2: any;
-
+  userEmail : string = '';
   public googleInit() {
     gapi.load('auth2', () => {
       this.auth2 = gapi.auth2.init({
@@ -63,18 +63,22 @@ export class LoginComponent implements OnInit, AfterViewInit {
       version: 'v2.0'
     };
     this.fb.init(fbParams);
+    if(localStorage.getItem('userEmail') !== undefined && localStorage.getItem('userEmail') !== null){
+      this.userEmail = localStorage.getItem('userEmail');
+    }
   }
 
   onSubmit(f) {
     let body = f.value;
     this.auth.login(body.email, body.password).subscribe((success) => {
       if (success) {
+        localStorage.removeItem('userEmail');
         this.router.navigateByUrl('/dashboard');
       } else {
         alert('Credenciales inválidas');
       }
       f.reset();
-    }, (err)=> { alert('Credenciales inválidas');} )
+    }, (err)=> { console.log(err); alert(err);} )
   }
 
   facebookLogin(){
@@ -101,6 +105,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }, (err) => { alert('Credenciales inválidas'); })
   }
 
- 
+
 
 }

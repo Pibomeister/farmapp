@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { PagerService } from './../services/pager.service';
 import { ShopItem } from './../models/shop-item';
@@ -15,8 +15,10 @@ import { Subscription } from 'rxjs/Rx';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
+  private subscription2: Subscription;
   class: string;
   subClass: string;
+  userEmail : string;
   displayNo = 0;
   orderNo = 0;
   drugs: ShopItem[];
@@ -26,12 +28,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private httpService: HttpService, 
     private pagerService: PagerService, 
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router : Router
   ) {}
 
   ngOnInit() {
+
       this.subscription = this.activatedRoute.params
       .map(param => {
+        console.log(param);
         this.class = param['category'];
         this.subClass = param['subCategory'];
       })
@@ -42,6 +47,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
       },
       error => console.log(error)
       );
+
+      this.subscription2 = this.activatedRoute.queryParams
+      .subscribe(queryParams => {
+        console.log(queryParams);
+        if(queryParams.hasOwnProperty('mail')){
+            this.userEmail = queryParams['mail'];
+            localStorage.setItem('userEmail', this.userEmail);
+            this.router.navigate(['/login']);
+        }
+      });
   }
 
   private getAverages(drugs: ShopItem[]) {
@@ -65,6 +80,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
+
   }
 
 }

@@ -52,7 +52,7 @@ export class AuthService {
   }
 
   getUser(): any  {
-    var user = localStorage.getItem('user');   
+    var user = localStorage.getItem('user');
     return user ? user : false;
   }
 
