@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit {
       }).switchMap(usermail => this.auth.secondStep(usermail))
         .subscribe((info) => {
           console.log(info);
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/activate');
         }, (err) => {
           alert(err);
           f.reset();

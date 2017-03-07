@@ -1,3 +1,6 @@
-<h2>Gracias por verificar su dirección de correo</h2>
+<div style="padding:15px;">
+  <h2>{{title}}</h2>
 
-<p>Ahora puedes ir a la página de <a [routerLink]="['/login']">Inicio de sesión</a></p>
+  <p *ngIf="activated">Ahora puedes ir a la página de <a [routerLink]="['/login']">Inicio de sesión</a></p>
+  <p *ngIf="!activated">Favor de revisar tu cuenta de correo para completar tu registro</p>
+</div>
