@@ -29,7 +29,10 @@ nav{
 .navbar-brand{
     padding: 10px;
     text-transform: uppercase;
-    color: #5f6f81;
+    cursor: pointer;
+    img{
+        height: 30px;
+    }
 }
 
 .user-item{
@@ -118,7 +121,7 @@ input.form-control{
         transition: all 0.25s ease-in-out;
         &:hover{
             color: white;
-            background-color: #5f6f81;
+            background-color: lighten(#5f6f81, 40%);
         }
     }
     .user-item{

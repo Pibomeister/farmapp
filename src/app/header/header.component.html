@@ -3,7 +3,10 @@
   <button class="navbar-toggler navbar-toggler-right"  (click)="isExpanded = !isExpanded">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" [routerLink]="['/']">FarmApp</a>
+  <div class="navbar-brand" [routerLink]="['/']">
+  <img src="/assets/isotipo.svg" alt="farmapp-text">
+  <img src="/assets/logotipo.svg" alt="farmapp-logo">
+  </div>
 
   <div class="collapse navbar-collapse"[ngClass]="{show: isExpanded}">
     <ul class="navbar-nav mr-auto mt-2 mt-md-0">
