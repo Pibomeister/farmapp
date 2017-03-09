@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { PagerService } from './../services/pager.service';
 import { ShopItem } from './../models/shop-item';
@@ -50,7 +50,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       this.subscription2 = this.activatedRoute.queryParams
       .subscribe(queryParams => {
-        console.log(queryParams);
         if(queryParams.hasOwnProperty('mail')){
             this.userEmail = queryParams['mail'];
             localStorage.setItem('userEmail', this.userEmail);

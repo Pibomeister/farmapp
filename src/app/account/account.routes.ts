@@ -1,9 +1,11 @@
-import {Routes, RouterModule} from "@angular/router";
-import { AccountEditComponent } from "./account-edit.component";
+import {RouterModule, Routes} from "@angular/router";
+
 import { AccountDetailComponent } from "./account-detail.component";
+import { AccountEditComponent } from "./account-edit.component";
 import {AuthGuard} from "../auth.guard";
+
 /**
- * Created by Farid on 19/1/2017.
+ * Created by FAG on 19/1/2017.
  */
 const ACCOUNT_ROUTES : Routes = [
   {path: '', pathMatch : 'full', redirectTo : 'main'},

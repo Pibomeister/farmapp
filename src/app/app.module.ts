@@ -3,8 +3,6 @@ import { IAppState, INITIAL_STATE, rootReducer } from './store';
 import { NgModule, isDevMode } from '@angular/core';
 
 import { AccountComponent } from './account/account.component';
-import { AccountDetailComponent } from "./account/account-detail.component";
-import { AccountEditComponent } from "./account/account-edit.component";
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './services/auth.service';
@@ -24,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PagerComponent } from './dashboard/pager/pager.component';
 import { PagerService } from './services/pager.service';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { SignupComponent } from './signup/signup.component';
 import { appRouting } from './app.routing';
 
@@ -40,15 +39,15 @@ import { appRouting } from './app.routing';
     ListItemComponent,
     AccountComponent,
     PagerComponent,
-    DashboardHomeComponent
-  ],
+    DashboardHomeComponent  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     NgReduxModule,
-    appRouting,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ShoppingCartModule,
+    appRouting  
   ],
   providers: [
     HttpService,

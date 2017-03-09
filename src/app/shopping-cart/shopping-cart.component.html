@@ -1,4 +1,4 @@
-<div class="container"> 
+<div class="container">
   <div class="row">
     <div class="col-12" [hidden]="(count | async) !== 0">
       <div class="empty-wrapper">
@@ -8,8 +8,12 @@
         </div>
       </div>
     </div>
-    <div class="col-12 main" [hidden]="(count | async) === 0">
+  </div>
+  <div class="row" [hidden]="(count | async) === 0">
+    <div class="col-12">
       <h3><i class="fa fa-shopping-cart" aria-hidden="true"></i>Carrito</h3>
+    </div>
+    <div class="col-md-8">
       <table class="table">
         <thead>
           <tr>
@@ -34,16 +38,22 @@
             <td valign="middle">{{(item.price * item.qty) | currency:'MXN':true }}</td>
             <td valign="middle">
               <button (click)="onRemove(i)" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
-            </td>       
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
-  <div class="row" [hidden]="(count | async) === 0">
-    <hr>
-    <div class="col-lg-4 offset-lg-8"><h5><strong>Total:</strong>{{total | async | currency:'MXN':true}}</h5>
-     <button type="button" class="btn btn-lg btn-success btn-block"><i class="fa fa-check" aria-hidden="true"></i>Confirmar pedido</button>
+    <div class="col-md-4">
+      <h5>
+        <strong>Total</strong><br>
+        <span class="total">{{total | async | currency:'MXN':true}}</span>
+      </h5>
+      <button [routerLink]="['checkout']" type="button" class="btn btn-lg btn-success btn-block"><i class="fa fa-check" aria-hidden="true"></i>Proceder a pago</button>
     </div>
+
   </div>
+
+
+  <hr>
+
 </div>

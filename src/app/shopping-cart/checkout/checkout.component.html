@@ -1,0 +1,61 @@
+<div class="container main">
+  <div class="row">
+    <div class="col-12">
+      <h3><i class="fa fa-check-circle-o" aria-hidden="true"></i> Confirmar pago</h3>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title">1. M&eacute;todo de pago</h4>
+          <div class="form-group">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadios" [(ngModel)]="paymentType" (ngModelChange)="onRadio($event)" value="new" checked>
+                Pago con nueva tarjeta <i class="fa fa-cc-visa" aria-hidden="true"></i>&nbsp;<i class="fa fa-cc-mastercard" aria-hidden="true"></i>
+              </label>
+              <div (click)="isEditing = !isEditing" class="edit-card"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</div>
+            </div>
+            <fa-new-card *ngIf="isEditing"></fa-new-card>
+            <div class="form-check">
+              <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="optionsRadios" [(ngModel)]="paymentType" (ngModelChange)="onRadio($event)" value="paypal">
+        Pago con <i class="fa fa-cc-paypal" aria-hidden="true"></i>
+      </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block">
+          <div class="clearfix">
+            <h4 class="pull-left card-title">2. Revisar pedido</h4>
+            <a class="pull-right card-link" [routerLink]="['../']"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
+          </div>
+          <br>
+          <ul class="list-group">
+            <li class="list-group-item justify-content-between" *ngFor="let item of (items | async)">
+              <span>
+                <strong>{{item.name}}</strong>
+                <span class="text-muted"> x {{item.qty}}</span>
+              </span>
+              <span class="badge badge-pill badge-default text-right">{{(item.price * item.qty) | currency:'MXN':true }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h5>
+        <strong>Total</strong><br>
+        <span class="total">{{total | async | currency:'MXN':true}}</span>
+      </h5>
+      <button [routerLink]="['../success']" type="button" class="btn btn-lg btn-success btn-block" [ngClass]="{'pay-pal-btn' : paymentType == 'paypal'}">
+        <i *ngIf="paymentType != 'paypal'" class="fa fa-check" aria-hidden="true"></i>
+        <i *ngIf="paymentType == 'paypal'" class="fa fa-paypal" aria-hidden="true"></i>
+        Confirmar pedido
+      </button>
+      <div class="text-right text-muted">Al presionar 'confirmar pedido' estas declarando estar de acuerdo con nuestros <a href="/">t&eacute;rminos y condiciones</a>.</div>
+    </div>
+  </div>
+  <hr>
+</div>

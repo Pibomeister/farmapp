@@ -1,0 +1,52 @@
+<div class="card card-inverse" style="background-color: #333; border-color: #333;">
+  <div class="card-block">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="form-group">
+        <div class="input-group">
+          <span style="padding: 0 15px;" class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+          <input type="text" #name="ngModel" name="name" class="form-control form-control-lg" ngModel placeholder="Nombre" required>
+        </div>
+        <div *ngIf="!name.valid && name.touched" class="alert alert-danger" role="alert">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> &nbsp;Por favor ingrese un <strong>nombre</strong>.
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span style="padding: 0 11px;" class="input-group-addon"><i class="fa fa-cc" aria-hidden="true"></i></span>
+          <!--TODO: RECONOCIMIENTO POR REGEX DE TIPO DE TARJETA CON UN CUSTOM PIPE -->
+          <input type="text" class="form-control form-control-lg" #ccNo="ngModel" name="ccNo" placeholder="####-####-####-####" ngModel required minlength="9">
+        </div>
+        <div *ngIf="!ccNo.valid && ccNo.touched" class="alert alert-danger" role="alert">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> &nbsp;Por favor ingrese una <strong>n&uacute;mero de tarjeta</strong> válido.
+        </div>
+      </div>
+       <div class="form-group">
+        <div class="input-group">
+          <span style="padding: 0 15px;" class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+          <input type="password" [maxLength]="3" minLength="3" required placeholder="CVC" class="form-control form-control-lg" #greenKity="ngModel" name="greenKity" ngModel>
+        </div>
+        <div *ngIf="!greenKity.valid && greenKity.touched" class="alert alert-danger" role="alert">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> &nbsp;Por favor ingrese un <strong>CVC</strong> válido.
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span (click)="d.toggle()" class="input-group-addon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
+          <input class="form-control form-control-lg" placeholder="AAAA-MM-DD"
+             name="expirationDate" [(ngModel)]="expirationDate" ngbDatepicker #d="ngbDatepicker">
+        </div>
+        <div *ngIf="!d.valid && d.touched" class="alert alert-danger" role="alert">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> &nbsp;Por favor ingrese una <strong>fecha</strong> válida.
+        </div>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" ngModel name="rememberCard">
+          Recordar esta tarjeta
+        </label>
+      </div>
+      <button type="submit" class="full-width btn btn-primary btn-lg btn-block" [disabled]="!f.valid">Guardar</button>
+    </form>
+  </div>
+</div>
+<br>
