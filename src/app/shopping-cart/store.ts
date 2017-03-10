@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 
-import { ADD_CART, DECREASE_CART, INCREASE_CART, REMOVE_CART } from './actions';
+import { ADD_CART, DECREASE_CART, INCREASE_CART, REMOVE_CART, EMPTY_CART } from './actions';
 
 import { tassign } from 'tassign';
 
@@ -73,12 +73,17 @@ function decreaseItemCount(state, action){
     return tassign(state, calcNewCart(newList));
 }
 
+function emptyCart(state, action){
+    return tassign(state, CART_INITIAL_STATE);
+}
+
 export function cartReducer(state: ICartState = CART_INITIAL_STATE, action): ICartState {
   switch (action.type) {
     case ADD_CART: return addItem(state, action);
     case REMOVE_CART: return removeItem(state, action);
     case INCREASE_CART: return increaseItemCount(state, action);
     case DECREASE_CART: return decreaseItemCount(state, action);
+    case EMPTY_CART : return emptyCart(state,action);
   }
   return state; 
 }
