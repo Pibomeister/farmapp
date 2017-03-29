@@ -49,7 +49,7 @@
         <strong>Total</strong><br>
         <span class="total">{{total | async | currency:'MXN':true}}</span>
       </h5>
-      <button [routerLink]="['../success']" type="button" class="btn btn-lg btn-success btn-block" [ngClass]="{'pay-pal-btn' : paymentType == 'paypal'}">
+      <button (click)="sendOrder()" type="button" class="btn btn-lg btn-success btn-block" [ngClass]="{'pay-pal-btn' : paymentType == 'paypal'}">
         <i *ngIf="paymentType != 'paypal'" class="fa fa-check" aria-hidden="true"></i>
         <i *ngIf="paymentType == 'paypal'" class="fa fa-paypal" aria-hidden="true"></i>
         Confirmar pedido

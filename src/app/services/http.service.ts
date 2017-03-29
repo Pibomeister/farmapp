@@ -1,3 +1,4 @@
+import { Order } from './../models/order';
 import { Headers, Http, RequestOptions, Response } from "@angular/http";
 
 import { Injectable } from '@angular/core';
@@ -27,6 +28,20 @@ export class HttpService {
     let params = localStorage.getItem('user');
     params = params.replace(/["']/g, "");
     return this.http.get('http://localhost:3000/user/' + params, options)
+      .map((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
+  postOrder(products:any, total:number){
+    let headers = new Headers({ 'Authorization': localStorage.getItem('token')});
+    let options = new RequestOptions({ headers: headers });
+    let body = new Order();
+    let userid = localStorage.getItem('user');
+    userid = userid.replace(/["']/g, "");
+    body.userId = userid;
+    body.products = products;
+    body.total = total;
+    return this.http.post('http://localhost:3000/order/', body, options)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
