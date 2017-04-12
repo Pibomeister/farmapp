@@ -1,16 +1,42 @@
-<div class="row">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 hidden-sm-up">
+      <ul class="nav nav-pills nav-justified">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['main']"><i class="fa fa-user-circle"></i> Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['interests']"><i class="fa fa-heart"></i> Favoritos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['address']"><i class="fa fa-map-pin"></i> Direcciones</a>
+        </li>
+        <br>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['payment']"><i class="fa fa-credit-card"></i> Pagos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['billing']"><i class="fa fa-id-card-o"></i> Facturaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['history']"><i class="fa fa-history"></i> Compras</a>
+        </li>
+      </ul>
+    </div>
 
-  <div class="col-xs-2">
-    <ul class="list-group">
-      <li class="list-group-item" routerLinkActive="menu-active"><a [routerLink]="['main']"><i class="fa fa-user-circle">Mi información</i></a></li>
-      <li class="list-group-item" routerLinkActive="menu-active"><a [routerLink]="['edit']">Otra analidad</a></li>
-    </ul>
+    <div class="col-md-4 col-lg-3 hidden-xs-down">
+      <ul class="list-group">
+        <li class="list-group-item" routerLinkActive="menu-active"><a [routerLink]="['main']"><i class="fa fa-user-circle"></i>Mi información</a></li>
+        <li class="list-group-item" routerLinkActive="menu-active"><a [routerLink]="['interests']"><i class="fa fa-heart"></i>Mis favoritos</a></li>
+        <li class="list-group-item" routerLinkActive="menu-active"><a [routerLink]="['address']"><i class="fa fa-map-pin"></i>Mis direcciones de envío</a></li>
+        <li class="list-group-item" routerLinkActive="menu-active"><a [routerLink]="['payment']"><i class="fa fa-credit-card"></i>Mis métodos de pago</a></li>
+        <li class="list-group-item" routerLinkActive="menu-active"><a [routerLink]="['billing']"><i class="fa fa-id-card-o"></i>Mi información de facturación</a></li>
+        <li class="list-group-item" routerLinkActive="menu-active"><a [routerLink]="['history']"><i class="fa fa-history"></i>Mi historial de compras</a></li>
+      </ul>
+    </div>
+    <div class="col-md-8 col-lg-9 ro">
+      <router-outlet></router-outlet>
+    </div>
 
   </div>
-
-  <div class="col-xs-10" style="padding:15px;">
-    <router-outlet></router-outlet>
-  </div>
-
-
 </div>

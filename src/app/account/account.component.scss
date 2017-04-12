@@ -1,4 +1,52 @@
+$primary: #5f6f81;
+.container-fluid{
+  padding-top: 20px;
+}
 .menu-active {
   font-weight: bolder;
-  font-size: 1.2em;
+}
+
+.list-group{
+  border-radius: 1px;
+}
+.nav-pills{
+  max-width: 100%;
+  overflow-x: scroll;
+  .nav-item{
+    font-size: 0.8em;
+    .nav-link{
+      color: $primary;
+      &.active{
+        background-color: $primary;
+        color: white;
+      }
+    }  
+  }
+}
+.list-group-item{
+  border-radius: 1px;
+  a {
+    width: 100%;
+    color: #5f6f81;
+    i {
+      margin-right: .4em;
+    }
+  }
+
+  &:hover{
+    transition: all 0.2s ease-in-out;
+    background-color: #5f6f81;
+    a{
+      color: white !important;
+      text-decoration: none;
+    }
+    
+  }
+  
+}
+
+@media(max-width: 768px){
+  .ro{
+    padding-top: 15px;
+  }
 }

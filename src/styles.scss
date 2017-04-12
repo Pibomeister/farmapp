@@ -7,6 +7,8 @@ html, body {
   background-color: lighten(#32465A, 72%);
 }
 
+$primary: #5f6f81;
+
 .loading-container{
   display: flex;
   height: 100vh;
@@ -98,4 +100,12 @@ html, body {
     border-bottom: 1px solid darken(#e74c3c, 20%) !important;
     color: white !important;
   }
+}
+
+.breadcrumb{
+    background-color: inherit;
+    margin-bottom: 0;
+    .breadcrumb-item{
+      color: $primary;
+    }
 }
