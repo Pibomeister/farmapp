@@ -31,6 +31,7 @@ export class CheckoutComponent implements OnInit {
     for(let p of this.ngRedux.getState().cart.cartItems){
       let sum = p.price * p.qty;
       products.push({
+        _id : p._id,
         name : p.name,
         qty: p.qty,
         price : p.price,

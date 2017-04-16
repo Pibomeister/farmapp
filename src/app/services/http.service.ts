@@ -1,8 +1,8 @@
-import { Order } from './../models/order';
 import { Headers, Http, RequestOptions, Response } from "@angular/http";
 
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Rx";
+import { Order } from './../models/order';
 
 @Injectable()
 export class HttpService {
@@ -15,10 +15,16 @@ export class HttpService {
     if (classification) url += `/${classification}`;
     if (subclass) url += `/${subclass}`;
     console.log(url);
-    let headers = new Headers({ 'Authorization': localStorage.getItem('token')});
-    let options = new RequestOptions({ headers: headers });
-    return this.http.get('http://localhost:3000/api/drugs', options)
+    return this.http.get('http://localhost:3000/api/drugs')
       .map((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
+  getProduct(pid: string){
+    let url = `http://localhost:3000/api/drug/${pid}`;
+    console.log(url);
+    return this.http.get(url)
+      .map(res => res.json())
       .catch(this.handleError);
   }
 

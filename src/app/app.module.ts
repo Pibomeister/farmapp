@@ -25,6 +25,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { SignupComponent } from './signup/signup.component';
 import { appRouting } from './app.routing';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { appRouting } from './app.routing';
     ListItemComponent,
     AccountComponent,
     PagerComponent,
-    DashboardHomeComponent  ],
+    DashboardHomeComponent,
+    ProductComponent  ],
   imports: [
     BrowserModule,
     FormsModule,

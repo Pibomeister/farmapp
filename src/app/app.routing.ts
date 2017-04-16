@@ -6,6 +6,7 @@ import { CART_ROUTES } from './shopping-cart/shopping-cart.routes';
 import { CardComponent } from './dashboard/card/card.component';
 import { CheckoutComponent } from './shopping-cart/checkout/checkout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductComponent } from './product/product.component';
 import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
 import { FofComponent } from './fof/fof.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardHomeComponent },
     { path: 'dashboard/:category', component: DashboardComponent },
     { path: 'dashboard/:category/:subCategory', component: DashboardComponent },
+    { path: 'product/:pid', component: ProductComponent},
     ...CART_ROUTES,
     { path: 'account', component: AccountComponent, canActivate: [AuthGuard], loadChildren : './account/account.module#AccountModule' },
     { path: 'activate', component: FofComponent },

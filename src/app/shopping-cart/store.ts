@@ -36,6 +36,7 @@ function addItem(state, action){
     let idx = _.findIndex(state.cartItems, {'name': action.name});
     if(idx !== -1 ) return increaseItemCount(state, {index: idx});
     let newItem = {
+        _id: action._id,
         name: action.name,
         price: action.price,
         qty: 1,

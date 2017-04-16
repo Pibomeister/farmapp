@@ -40,6 +40,7 @@ export class CardComponent implements OnInit {
   addToCart(item: ShopItem){
     this.ngRedux.dispatch({
       type: ADD_CART,
+      _id: item._id,
       name: item.name,
       price:item.discount ? item.discount : item.price,
       imgUrl: item.imgUrl
