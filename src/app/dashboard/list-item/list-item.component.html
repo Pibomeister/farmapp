@@ -6,7 +6,7 @@
     <div class="d-flex w-100 justify-content-between">
       <div>
         <h5 class="mb-1">{{shopItem?.name}}</h5>
-        <h6 class="text-muted">{{shopItem?.fancyName}}</h6>
+        <h6 class="text-muted">{{shopItem?.substance}}</h6>
       </div>    
       <div>
         <p class="rating">
@@ -19,7 +19,7 @@
         
     </div>
     <div class="d-flex w-100 justify-content-between">
-          <h6 *ngIf="shopItem.discount">{{shopItem?.discount | currency:'MXN':true}}<small><br><del>{{shopItem?.price | currency:'MXN':true}}</del></small></h6>
+          <h6 *ngIf="shopItem.discount">{{ getItemPrice(shopItem) | currency:'MXN':true}}<small><br><del>{{shopItem?.price | currency:'MXN':true}}</del></small></h6>
           <h6 *ngIf="!shopItem.discount">{{shopItem?.price | currency:'MXN':true}}</h6>
        <div class="btn-group">
          <button type="button" tooltip="Encontrar cerca" class="btn btn-secondary"><i class="fa fa-map-marker"  aria-hidden="true"></i></button>

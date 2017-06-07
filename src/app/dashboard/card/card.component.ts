@@ -4,6 +4,8 @@ import { ADD_CART } from './../../shopping-cart/actions';
 import { IAppState } from './../../store';
 import { NgRedux } from 'ng2-redux';
 import { ShopItem } from './../../models/shop-item';
+import {HttpService} from "../../services/http.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'fa-card',
@@ -11,12 +13,14 @@ import { ShopItem } from './../../models/shop-item';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  
+
   @Input() shopItem: ShopItem;
   arr : Array<number>;
   avg : number;
   aplica : boolean = false;
-  constructor(private ngRedux: NgRedux<IAppState>) {   
+  constructor(private httpService : HttpService,
+              private router : Router,
+              private ngRedux: NgRedux<IAppState>) {
   }
 
   ngOnInit() {
@@ -37,6 +41,10 @@ export class CardComponent implements OnInit {
         }
   }
 
+  getItemPrice(item : ShopItem){
+    return item.price * (1 - (item.discount/100));
+  }
+
   addToCart(item: ShopItem){
     this.ngRedux.dispatch({
       type: ADD_CART,
@@ -45,6 +53,10 @@ export class CardComponent implements OnInit {
       price:item.discount ? item.discount : item.price,
       imgUrl: item.imgUrl
     });
+  }
+
+  showOnMap(id:string){
+    this.router.navigate(['map', id]);
   }
 
 }

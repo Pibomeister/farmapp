@@ -26,6 +26,8 @@ import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { SignupComponent } from './signup/signup.component';
 import { appRouting } from './app.routing';
 import { ProductComponent } from './product/product.component';
+import { MapComponent } from './map/map.component';
+import {AgmCoreModule} from "angular2-google-maps/core";
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { ProductComponent } from './product/product.component';
     AccountComponent,
     PagerComponent,
     DashboardHomeComponent,
-    ProductComponent  ],
+    ProductComponent,
+    MapComponent  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -49,7 +52,10 @@ import { ProductComponent } from './product/product.component';
     NgReduxModule,
     NgbModule.forRoot(),
     ShoppingCartModule,
-    appRouting  
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDzGdPIfmQl6se1s7m4RGx-wfUgU1xuEZY'
+    }),
+    appRouting
   ],
   providers: [
     HttpService,

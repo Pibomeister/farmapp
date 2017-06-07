@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { SignupComponent } from './signup/signup.component';
 import { SuccessComponent } from './shopping-cart/success/success.component';
+import { MapComponent } from "./map/map.component";
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: 'dashboard/:category', component: DashboardComponent },
     { path: 'dashboard/:category/:subCategory', component: DashboardComponent },
     { path: 'product/:pid', component: ProductComponent},
+    { path: 'map/:id', component : MapComponent},
     ...CART_ROUTES,
     { path: 'account', component: AccountComponent, canActivate: [AuthGuard], loadChildren : './account/account.module#AccountModule' },
     { path: 'activate', component: FofComponent },

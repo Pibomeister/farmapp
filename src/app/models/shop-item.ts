@@ -5,8 +5,8 @@ export class ShopItem {
     rating: Array<number>;
     price: number;
     discount?: number;
-    imgUrl?: string;  
-    
+    imgUrl?: string;
+
     public getPreviousPrice(){
         return 2;
         /*console.log('called');
@@ -28,6 +28,6 @@ export class ShopItem {
         else{
             return undefined;
         }
-        
+
     }
 }

@@ -43,6 +43,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .switchMap(() => this.httpService.getData(this.class, this.subClass))
       .subscribe(data => {
         this.drugs = data;
+        console.log('drugs', this.drugs);
         this.setPage(1);
       },
       error => console.log(error)

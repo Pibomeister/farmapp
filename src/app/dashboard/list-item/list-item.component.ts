@@ -35,6 +35,10 @@ export class ListItemComponent implements OnInit {
     }
   }
 
+  getItemPrice(item : ShopItem){
+    return item.price * (1 - (item.discount/100));
+  }
+
   addToCart(item: ShopItem){
     this.ngRedux.dispatch({
       type: ADD_CART,

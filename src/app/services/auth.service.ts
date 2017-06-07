@@ -23,26 +23,26 @@ export class AuthService {
   }
 
   createUser(name : string, email: string, password: string): Observable<any> {
-    return this.http.post('http://localhost:3000/user/signup', { name, email, password })
+    return this.http.post('/user/signup', { name, email, password })
       .map(res => res.json());
   }
 
   secondStep(usermail : string) : Observable<any> {
-    return this.http.get('http://localhost:3000/user/send/' + usermail)
+    return this.http.get('/user/send/' + usermail)
       .map(res => res.json());
   }
 
 
   login(email: string, password: string): Observable<boolean> {
-    return this._access('http://localhost:3000/user/login', {email, password});
+    return this._access('/user/login', {email, password});
   }
 
   registerFacebookUser(user) {
-    return this._access('http://localhost:3000/user/fbuser', { user: user });
+    return this._access('/user/fbuser', { user: user });
   }
 
   registerGoogleUser(user) {
-    return this._access('http://localhost:3000/user/googleuser', { user: user });
+    return this._access('/user/googleuser', { user: user });
   }
 
   logout() {

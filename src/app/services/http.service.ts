@@ -11,17 +11,25 @@ export class HttpService {
   }
 
   getData(classification?: string, subclass? : string) {
-    let url = 'http://localhost:3000/api/drugs';
+    let url = '/api/drugs';
     if (classification) url += `/${classification}`;
     if (subclass) url += `/${subclass}`;
     console.log(url);
-    return this.http.get('http://localhost:3000/api/drugs')
+    return this.http.get('/api/drugs')
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
   getProduct(pid: string){
-    let url = `http://localhost:3000/api/drug/${pid}`;
+    let url = `/api/drug/${pid}`;
+    console.log(url);
+    return this.http.get(url)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  getPharmacies(){
+    let url = '/api/pharmacy';
     console.log(url);
     return this.http.get(url)
       .map(res => res.json())
@@ -33,7 +41,7 @@ export class HttpService {
     let options = new RequestOptions({ headers: headers });
     let params = localStorage.getItem('user');
     params = params.replace(/["']/g, "");
-    return this.http.get('http://localhost:3000/user/' + params, options)
+    return this.http.get('/user/' + params, options)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }

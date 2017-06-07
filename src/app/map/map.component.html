@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <sebm-google-map [latitude]="centerLat" [longitude]="centerLng" [zoom]="zoom">
+    <sebm-google-map-marker *ngFor="let pharmacy of pharmacies" [latitude]="pharmacy.lat" [longitude]="pharmacy.lng"></sebm-google-map-marker>
+  </sebm-google-map>
+  <div class="product-detail">
+    <div style="height:50%">
+      <fa-card [shopItem]="drug"></fa-card>
+    </div>
+    <div>
+      <h3>Disponibles</h3>
+      <ul class="list-group" style="padding-right:10px; padding-left: 10px">
+        <a style="cursor:pointer" (click)="centerPharmacy($event, pharmacy)" *ngFor="let pharmacy of pharmacies" class="list-group-item list-group-item-action">
+          {{pharmacy.name}}
+        </a>
+      </ul>
+    </div>
+  </div>
+</div>
