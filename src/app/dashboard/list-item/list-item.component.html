@@ -22,7 +22,7 @@
           <h6 *ngIf="shopItem.discount">{{ getItemPrice(shopItem) | currency:'MXN':true}}<small><br><del>{{shopItem?.price | currency:'MXN':true}}</del></small></h6>
           <h6 *ngIf="!shopItem.discount">{{shopItem?.price | currency:'MXN':true}}</h6>
        <div class="btn-group">
-         <button type="button" tooltip="Encontrar cerca" class="btn btn-secondary"><i class="fa fa-map-marker"  aria-hidden="true"></i></button>
+         <button type="button" tooltip="Encontrar cerca" class="btn btn-secondary" (click)="showOnMap(shopItem._id)"><i class="fa fa-map-marker"  aria-hidden="true"></i></button>
          <button type="button" tooltip="Agregar al carrito" class="btn btn-primary" (click)="addToCart(shopItem)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
       </div>
     </div>

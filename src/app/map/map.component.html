@@ -1,6 +1,13 @@
 <div class="container-fluid">
   <sebm-google-map [latitude]="centerLat" [longitude]="centerLng" [zoom]="zoom">
-    <sebm-google-map-marker *ngFor="let pharmacy of pharmacies" [latitude]="pharmacy.lat" [longitude]="pharmacy.lng"></sebm-google-map-marker>
+    <sebm-google-map-marker [title]="Tu" [latitude]="userLat" [longitude]="userLng">
+    </sebm-google-map-marker>
+    <sebm-google-map-marker (markerClick)="setActivePharmacy(null, pharmacy)" *ngFor="let pharmacy of pharmacies" iconUrl="/assets/pharmacy.png" [title]="pharmacy.name" [latitude]="pharmacy.lat" [longitude]="pharmacy.lng">
+      <sebm-google-map-info-window [isOpen]="pharmacy.active">
+         <strong>{{pharmacy.name}}</strong>
+         <p>Dirección : {{pharmacy.address}}</p>
+       </sebm-google-map-info-window>
+    </sebm-google-map-marker>
   </sebm-google-map>
   <div class="product-detail">
     <div style="height:50%">
@@ -9,10 +16,11 @@
     <div>
       <h3>Disponibles</h3>
       <ul class="list-group" style="padding-right:10px; padding-left: 10px">
-        <a style="cursor:pointer" (click)="centerPharmacy($event, pharmacy)" *ngFor="let pharmacy of pharmacies" class="list-group-item list-group-item-action">
+        <a style="cursor:pointer" (click)="setActivePharmacy($event, pharmacy)" *ngFor="let pharmacy of pharmacies" class="list-group-item list-group-item-action" [ngClass]="{'pharmacy-active': pharmacy.active}">
           {{pharmacy.name}}
         </a>
       </ul>
+      <button class="btn btn-info btn-block" (click)="goBack()">Regresar</button>
     </div>
   </div>
 </div>

@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpService } from "../services/http.service";
 import { Subscription } from "rxjs/Rx";
-import {ShopItem} from "../models/shop-item";
-import {ActivatedRoute} from "@angular/router";
+import { ShopItem } from "../models/shop-item";
+import { ActivatedRoute } from "@angular/router";
+import { Location } from "@angular/common";
 
 @Component({
   selector: 'fa-map',
@@ -13,6 +14,8 @@ export class MapComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   centerLat: number = 19.4199487;
   centerLng: number = -99.1754672;
+  userLat : number;
+  userLng : number;
   zoom : number = 10;
   pharmacies = [];
   drug : any = {
@@ -25,8 +28,17 @@ export class MapComponent implements OnInit, OnDestroy {
     "imgUrl": "/images/7501033923173.jpg",
     "rating" : []
   }
-  constructor(private httpService : HttpService, private route : ActivatedRoute) {
+  constructor(private httpService : HttpService, 
+              private route : ActivatedRoute,
+              private location : Location) {
+      this.getPosition();
+  }
 
+  getPosition() {
+    navigator.geolocation.getCurrentPosition(position=> {
+      this.userLat = position.coords.latitude;
+      this.userLng = position.coords.longitude;
+    });
   }
 
   ngOnInit() {
@@ -47,11 +59,21 @@ export class MapComponent implements OnInit, OnDestroy {
     this.zoom += 1;
   }
 
-  centerPharmacy(event, pharmacy){
-    event.stopPropagation();
+  setActivePharmacy(event, pharmacy){
+    if(event !== null && event !== undefined) event.stopPropagation();
+    this.pharmacies.forEach(pharmacy=>{
+      pharmacy.active = false;
+    });
+    pharmacy.active = true;
     this.centerLat = pharmacy.lat;
     this.centerLng = pharmacy.lng;
     this.zoom = 18;
   }
+  
+
+  goBack(){
+    this.location.back();
+  }
+
 
 }

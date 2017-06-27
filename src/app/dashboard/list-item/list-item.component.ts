@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { ADD_CART } from './../../shopping-cart/actions';
@@ -15,7 +16,7 @@ export class ListItemComponent implements OnInit {
   arr: Array<number>;
   avg: number;
   aplica: boolean = false;
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  constructor(private ngRedux: NgRedux<IAppState>, private router : Router) { }
 
   ngOnInit() {
     this.avg = this.getAverage(this.shopItem);
@@ -47,6 +48,10 @@ export class ListItemComponent implements OnInit {
       price:item.discount ? item.discount : item.price,
       imgUrl: item.imgUrl
     });
+  }
+
+  showOnMap(id:string){
+    this.router.navigate(['map', id]);
   }
 
 }
